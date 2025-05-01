@@ -1,4 +1,4 @@
-# Lecture de capteur DHT11 et transmission UART en C bas-niveau sur ATmega2560
+# Lecture de donnees du capteur DHT11 et affiche sur ecran LCD HD44780 16x22 en C bas-niveau sur ATmega2560
 
 Ce projet implémente, en langage C bare-metal, une interface directe entre un microcontrôleur ATmega2560 (Arduino Mega) et un capteur de température et d’humidité DHT11, sans utiliser de bibliothèques externes. Les données mesurées sont ensuite transmises via le protocole UART à un terminal série ou un autre périphérique. L’objectif est de comprendre le protocole de communication 1-Wire spécifique au DHT11, de le mettre en œuvre via des manipulations de registres, et de configurer l’UART pour envoyer les données en ASCII.
 
@@ -7,10 +7,12 @@ dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
 		  │ ├── dht11.h </br>
 	      │ ├── uart.h </br>
 		  │ └── gpio.h </br>
+          |  └── hd44780.h </br>
           ├── drivers/ # Fichiers source pour les pilotes bas-niveau </br>
           │ ├── dht11/dht11.c </br>
 	      │ ├── uart/uart.c</br>
 		  │ └── gpio/gpio.c</br>
+            └── hd44780/hd44780.c</br>
 		  ├── main/ # Logique principale de l’application </br>
           │ └── main.c </br>
 		  ├── build/ # Fichiers compilés (ignorés par Git) </br>
@@ -27,7 +29,7 @@ dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
 
 ## Prérequis
 
-- **Matériel** : Arduino Mega 2560, capteur DHT11
+- **Matériel** : Arduino Mega 2560, capteur DHT11, ecran LCD HD44780 16x2
 - **Outils** :
   - `avr-gcc`
   - `avrdude`
@@ -38,22 +40,16 @@ dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/christianTsounguiObama/dht11UART.git
-cd dht11UART/dht11_ws
+git clone https://github.com/christianTsounguiObama/dht11_hd44780.git
+cd dht11_hd44780/dht11_hd44780
 ```
-
-### 2. Compiler le projet
+### 2. Flasher le fichier binaire
+Assurez-vous que votre carte est connectée via USB et ajustez PORT dans le Makefile si nécessaire.
 ```bash
 make
 ```
 
-### 3. Flasher le fichier binaire
-Assurez-vous que votre carte est connectée via USB et ajustez PORT dans le Makefile si nécessaire.
-```bash
-make flash
-```
-
-### 4. Lire les données sur le port série
+### 3. Lire les données sur le port série
 Utilisez un outil comme screen :
 ```bash
 screen /dev/ttyUSB0 9600
