@@ -31,12 +31,10 @@ int main(void){
 			lcd_ecrire_mot("Temperature = ");
 			itoa(temperature, temp, 10);
 			lcd_ecrire_mot(temp);
-			lcd_envoi_commande(0xC0); // Aller a la deuxieme ligne
-
+			lcd_envoi_commande(0xC0); // Aller a la seconde ligne
 			lcd_ecrire_mot("Humidite = ");
 			itoa(humidite, hum, 10);
 			lcd_ecrire_mot(hum);
-			lcd_envoi_commande(0x00); // Aller a la fin de la deuxieme ligne
 		}else{
 			uart_envoi_mot("DHT11 error: ");
 			uart_envoi_nombre(status);
