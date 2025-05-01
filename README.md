@@ -1,6 +1,6 @@
 # Lecture de donnees du capteur DHT11 et affiche sur ecran LCD HD44780 16x22 en C bas-niveau sur ATmega2560
 
-Ce projet implémente, en langage C bare-metal, une interface directe entre un microcontrôleur ATmega2560 (Arduino Mega) et un capteur de température et d’humidité DHT11, sans utiliser de bibliothèques externes. Les données mesurées sont ensuite transmises via le protocole UART à un terminal série ou un autre périphérique. L’objectif est de comprendre le protocole de communication 1-Wire spécifique au DHT11, de le mettre en œuvre via des manipulations de registres, et de configurer l’UART pour envoyer les données en ASCII.
+Ce projet implémente, en langage C bare-metal, une interface directe entre un microcontrôleur ATmega2560 (Arduino Mega) et un capteur de température et d’humidité DHT11, sans utiliser de bibliothèques externes. Les données mesurées sont ensuite transmises via le protocole UART à un terminal série et a l'ecran LCD. L’objectif est de comprendre les protocoles de communication 1-Wire spécifique au DHT11, communication parallele du HD44780 16x2. Les donnees de temperature et d'humidite sont envoyees au moniteur serie et a l'ecran LCD.
 
 ## Structure du projet
 dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
@@ -25,6 +25,9 @@ dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
 - Traitement du signal (timing précis, gestion des bits de données).
 - Configuration et utilisation du module UART interne du microcontrôleur.
 - Transmission des mesures température/humidité vers un terminal série.
+- Initialisation manuelle de l’écran selon le protocole HD44780.
+- Affichage des donnees sur ecran LCD HD44780.
+- Implémentation de l’envoi de données/commandes via un bus parallèle 4 bits.
 - Codé sans bibliothèques Arduino, uniquement en accès registre.
 
 ## Prérequis
@@ -34,6 +37,10 @@ dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
   - `avr-gcc`
   - `avrdude`
 - **Système** : Linux (testé sous Ubuntu 20.04+)
+
+## Schema
+
+![DHT11_HD44780](https://github.com/user-attachments/assets/56146517-0ef6-437e-9a35-0a860afb1a8e)
 
 ## Démarrage rapide
 
