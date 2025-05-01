@@ -38,6 +38,10 @@ dht11_ws/ ├── include/ # Fichiers d'en-tête (headers)</br>
   - `avrdude`
 - **Système** : Linux (testé sous Ubuntu 20.04+)
 
+## Schema
+
+![DHT11_HD44780](https://github.com/user-attachments/assets/56146517-0ef6-437e-9a35-0a860afb1a8e)
+
 ## Démarrage rapide
 
 ### 1. Cloner le dépôt
